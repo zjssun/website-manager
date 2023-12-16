@@ -1,6 +1,4 @@
 <template>
-  <div>Navbar</div>
-  <div>Silder</div>
   <router-view/>
 </template>
 

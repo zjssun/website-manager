@@ -1,22 +1,21 @@
 <template>
    <div>
-      MainBox
+      <el-container>
+         <SideMenu/>
+         <el-container direction="vertical">
+            <TopHeader/>
+            <el-main>
+               <router-view></router-view>
+            </el-main>
+         </el-container>
+       </el-container>
    </div>
 </template>
-<script>
-export default{
-   data(){
-      return{
+<script setup>
+import TopHeader from "../components/mainbox/TopHeader.vue"
+import SideMenu from "../components/mainbox/SideMenu.vue"
 
-      }
-   },
-   mounted(){
 
-   },
-   methods:{
-
-   }
-}
 </script>
 <style lang="less" scope>
 
