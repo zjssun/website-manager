@@ -5,7 +5,7 @@
          <span style="margin-left:10px;">企业门户管理系统</span>
       </div>
       <div class="right">
-         <span>欢迎admin回来,</span>
+         <span>欢迎{{store.state.userInfo.username}}回来,</span>
          <el-dropdown>
               <el-icon  class="el-icon--right">
                   <i class="fa-solid fa-chevron-down"></i>
@@ -36,6 +36,7 @@ const handleCenter = ()=>{
 //退出登录
 const handleExit = ()=>{
    localStorage.removeItem('token');
+   store.commit("clearUserInfo");
    router.push("/login");
 }
 

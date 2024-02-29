@@ -13,7 +13,7 @@
                <label>请输入账户</label>
             </div>
             <div class="input-field">
-               <input type="password" v-mode="loginForm.password" required>
+               <input type="password" v-model="loginForm.password" required>
                <label>请输入密码</label>
             </div>
             <button @click="LoginHandle">登录</button>
@@ -24,7 +24,10 @@
 <script setup>
 import { reactive, ref, watch } from 'vue'
 import { loadSlim } from "tsparticles-slim";
-import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
+import { ElMessage } from 'element-plus'
+import axios from 'axios';
+import store from '../store/index';
 
 
 const particlesInit = async engine => {
@@ -41,12 +44,19 @@ const loginForm = reactive({
    password:""
 });
 //路由
-const router = useRoute();
+const router = useRouter();
 //登录事件
 const LoginHandle = ()=>{
    if(loginForm.password || loginForm.username){
-      localStorage.setItem("token","123");
-      router.push("/index");
+      axios.post("http://localhost:3000/adminapi/user/login",loginForm).then(res=>{
+         if(res.data.ActionType == "OK"){
+            store.commit("changeUserInfo",res.data);
+            router.push("/index");
+            console.log(res.data);
+         }else{
+            ElMessage.error('用户名或密码错误!')
+         }
+      })
    }else{
       console.log("请输入用户名和密码");
    }

@@ -5,6 +5,7 @@ export default createStore({
   state: {
     isGetterRouters: false,
     isCollapse:false,
+    userInfo:{},
   },
   getters: {
   },
@@ -16,6 +17,13 @@ export default createStore({
     //控制侧边栏展开
     changeCollapse(state){
       state.isCollapse = !state.isCollapse;
+    },
+    changeUserInfo(state,value){
+      state.userInfo = {...state.userInfo,...value};
+      console.log(state.userInfo);
+    },
+    clearUserInfo(state,value){
+      state.userInfo = {};
     }
   },
   actions: {
@@ -23,6 +31,6 @@ export default createStore({
   modules: {
   },
   plugins: [createPersistedState({
-    paths:["isCollapse"]
+    paths:["isCollapse","userInfo"]
   })],
 })
