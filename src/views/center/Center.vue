@@ -47,7 +47,7 @@
                   </el-form-item>
                   <!-- 头像 -->
                   <el-form-item label="头像" prop="avatar">
-                     <Upload :avatar="userForm.avatar" @uploadChange=""></Upload>
+                     <Upload :avatar="userForm.avatar" @uploadChange="handleChange"></Upload>
                   </el-form-item>
                   <!-- 按钮 -->
                   <el-form-item>

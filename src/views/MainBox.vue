@@ -18,5 +18,8 @@ import SideMenu from "../components/mainbox/SideMenu.vue"
 
 </script>
 <style lang="less" scope>
-
+.el-main{
+   overflow: auto;
+   height : calc(100vh-60px);
+}
 </style>

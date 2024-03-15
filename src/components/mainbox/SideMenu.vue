@@ -46,8 +46,10 @@ import {useRoute} from 'vue-router'
 const route = useRoute();
 </script>
 <style lang="less" scope>
+
 .el-aside{
    height:100vh;
+   transition: all 0.5s ease;
    .el-menu{
       height: 100%;
    }

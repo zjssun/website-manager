@@ -17,12 +17,12 @@ const props = defineProps({
   avatar:String, 
 });
 
-
+//传父方法
 const emit = defineEmits(["uploadChange"]);
-console.log(props.avatar);
+
 //修改头像
 const uploadAvatar = computed(()=>
-   props.avatar.includes("blob") 
+   props.avatar.includes("blob")
    ? props.avatar
    : 'http://localhost:3000'+ props.avatar
 );
