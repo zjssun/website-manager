@@ -51,6 +51,7 @@ const LoginHandle = ()=>{
       axios.post("http://localhost:3000/adminapi/user/login",loginForm).then(res=>{
          if(res.data.ActionType == "OK"){
             store.commit("changeUserInfo",res.data);
+            store.commit("changeGetterRouters",false);
             router.push("/index");
             console.log(res.data);
          }else{

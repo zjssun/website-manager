@@ -33,6 +33,9 @@ router.beforeEach((to,from,next)=>{
       });
     }else{
       if(!store.state.isGetterRouters){
+        //删除旧路由
+        router.removeRoute("mainbox");
+        //添加新路由
         ConfigRouter();
         next({
           path:to.fullPath
@@ -45,12 +48,23 @@ router.beforeEach((to,from,next)=>{
 });
 
 const ConfigRouter = ()=>{
+  if(!router.hasRoute("mainbox")){
+    router.addRoute({
+      path:'/mainbox',
+      name:'mainbox',
+      component:MainBox
+    });
+  }
   RoutesConfig.forEach(item=>{
-    router.addRoute("mainbox",item)
+    checkPermission(item) && router.addRoute("mainbox",item)
   });
   store.commit('changeGetterRouters',true);
 }
 
-
+const checkPermission = (item)=>{
+  if(item.requireAdmin){
+    return store.state.userInfo.role === 1; 
+  }return true;
+}
 
 export default router

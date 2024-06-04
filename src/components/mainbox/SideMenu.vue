@@ -11,7 +11,7 @@
             <span>用户中心</span>
          </el-menu-item>
 
-         <el-sub-menu index="/user-manage">
+         <el-sub-menu index="/user-manage" v-admin>
             <template #title>
               <el-icon><i class="fa-solid fa-users"></i></el-icon>
               <span>用户管理</span>
@@ -42,8 +42,20 @@
 </template>
 <script setup>
 import {useRoute} from 'vue-router'
+import {useStore} from 'vuex'
 
+const store = useStore();
 const route = useRoute();
+
+const vAdmin = {
+   mounted(el){
+      console.log(el);
+      if(store.state.userInfo.role!== 1){
+         el.parentNode.removeChild(el);
+      }
+   }
+}
+
 </script>
 <style lang="less" scope>
 

@@ -25,6 +25,7 @@ import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 const store = useStore();
 const router = useRouter();
+
 //折叠展开
 const handleCollapse = ()=>{
    store.commit("changeCollapse");
