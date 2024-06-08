@@ -4,6 +4,7 @@ import UserAdd from '../views/user-manage/UserAdd.vue'
 import UserList from '../views/user-manage/UserList.vue'
 import NewAdd from '../views/news-manage/NewsAdd.vue'
 import NewsList from '../views/news-manage/NewsList.vue'
+import NewsEdit from '../views/news-manage/NewEdit.vue'
 import ProductAdd from '../views/product-manage/ProductAdd.vue'
 import ProductList from '../views/product-manage/ProductList.vue'
 import NotFound from '../views/notfound/NotFound.vue'
@@ -44,6 +45,10 @@ const routes = [
       component:ProductList,
    },
    {
+      path:"/news-manage/editnews/:id",
+      component:NewsEdit,
+   },
+   {
       path:"/",
       redirect: "/index",
    },
@@ -51,7 +56,7 @@ const routes = [
       path:"/:pathMatch(.*)*",
       name:"notFound",
       component: NotFound,
-   }
+   },
 ];
 
 export default routes;
