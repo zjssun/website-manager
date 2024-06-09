@@ -1,6 +1,6 @@
 <template>
    <div>
-      <el-page-header content="添加产品" icon="" title="产品管理"/>
+      <el-page-header content="编辑产品" icon="" title="产品管理" @back="handleBack()"/>
       <el-form
       ref="ProductFormRef"
       :model="ProductForm"
@@ -34,13 +34,15 @@
    </div>
 </template>
 <script setup>
-import { ref,reactive } from 'vue';
+import { ref,reactive,onMounted } from 'vue';
 import upload from '@/util/upload'
 import Upload from '@/components/upload/Upload'
+import axios from 'axios';
 
-import { useRouter } from "vue-router"
+import { useRouter,useRoute } from "vue-router"
 
 const router = useRouter();
+const route = useRoute();
 
 //表单Ref
 const ProductFormRef = ref();
@@ -65,7 +67,16 @@ const ProductFormRules = reactive({
   cover: [
     { required: true, message: '请输上传头像', trigger: 'blur' },
   ],
-})
+});
+
+onMounted(()=>{
+   getData();
+});
+
+const getData = async ()=>{
+   const res = await axios.get(`http://localhost:3000/adminapi/product/list/${route.params.id}`);
+   Object.assign(ProductForm,res.data.data[0]);
+}
 
 //选择完图片后回调
 const handleChange = (file)=>{
@@ -76,10 +87,14 @@ const handleChange = (file)=>{
 const subitForm = ()=>{
    ProductFormRef.value.validate(async (valid)=>{
       if(valid){
-         await upload("http://localhost:3000/adminapi/product/add",ProductForm);
+         await upload("http://localhost:3000/adminapi/product/list",ProductForm);
          router.push(`/product/list`);
       }
    })
+}
+
+const handleBack = ()=>{
+   router.back();
 }
 </script>
 <style lang="less" scoped>

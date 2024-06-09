@@ -7,7 +7,10 @@ import NewsList from '../views/news-manage/NewsList.vue'
 import NewsEdit from '../views/news-manage/NewEdit.vue'
 import ProductAdd from '../views/product-manage/ProductAdd.vue'
 import ProductList from '../views/product-manage/ProductList.vue'
+import ProductEdit from '../views/product-manage/ProductEdit.vue'
 import NotFound from '../views/notfound/NotFound.vue'
+
+
 
 const routes = [
    {
@@ -43,6 +46,10 @@ const routes = [
    {
       path:"/product/list",
       component:ProductList,
+   },
+   {
+      path:"/product/edit/:id",
+      component:ProductEdit,
    },
    {
       path:"/news-manage/editnews/:id",
